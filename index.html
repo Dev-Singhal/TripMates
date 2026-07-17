@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TripMates Onboarding</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <section class="phone" aria-label="TripMates onboarding prototype">
+        <div class="screen splash active" data-screen="0">
+          <video class="splash-video" id="splashVideo" src="./assets/TripMates.mp4" poster="./assets/splash-poster.jpg" autoplay muted playsinline></video>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen" data-screen="1">
+          <header class="top-bar">Log in or sign up</header>
+          <div class="content login-content">
+            <h2>Let’s get started</h2>
+            <form class="stack">
+              <input class="field" type="email" placeholder="Email" />
+              <input class="field" type="password" placeholder="Password" />
+              <button class="primary-button" type="button" data-next>Continue</button>
+            </form>
+            <div class="divider"><span></span><em>or</em><span></span></div>
+            <div class="social-stack">
+              <button class="social-button" type="button"><img src="./assets/Facebook.svg" alt="" />Continue with Facebook<i></i></button>
+              <button class="social-button" type="button"><img src="./assets/Google.svg" alt="" />Continue with Google<i></i></button>
+              <button class="social-button" type="button"><img src="./assets/Apple.svg" alt="" />Continue with Apple<i></i></button>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen otp-screen" data-screen="2">
+          <header class="top-bar">Log in or sign up</header>
+          <div class="content otp-content">
+            <h2>OTP has been sent to your email</h2>
+            <div class="otp-grid">
+              <input maxlength="1" inputmode="numeric" />
+              <input maxlength="1" inputmode="numeric" />
+              <input maxlength="1" inputmode="numeric" />
+              <input maxlength="1" inputmode="numeric" />
+            </div>
+            <p class="otp-help">Didn’t receive an OTP?<br />Resend it in <strong id="otpTimer">38 seconds</strong></p>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen" data-screen="3">
+          <header class="top-bar">Log in or sign up</header>
+          <div class="content profile-content">
+            <h2>Let’s set up your travel profile</h2>
+            <div class="joined-fields">
+              <input class="field" type="text" placeholder="First name" />
+              <input class="field" type="text" placeholder="Last name" />
+            </div>
+            <p class="help">Make sure it matches the name on your government ID.</p>
+            <input class="field" type="text" inputmode="numeric" placeholder="Birthdate (dd/mm/yyyy)" maxlength="10" id="birthdateInput" />
+            <p class="help" id="birthdateError" hidden>Please enter a valid date</p>
+            <p class="help">To sign up, you need to be at least 18. Your birthday won’t be shared with other people who use TripMates.</p>
+            <div class="field-select gender-select" data-single-select>
+              <button class="field-option" type="button">Male</button>
+              <button class="field-option" type="button">Female</button>
+              <button class="field-option" type="button">Others</button>
+            </div>
+            <input class="field" type="text" placeholder="Location" />
+            <p class="help">This will help us recommend best companions for you</p>
+            <p class="legal">By selecting <b>Continue</b>, I agree to TripMates’ <a>Terms of Service</a>, <a>Nondiscrimination Policy</a> and acknowledge the <a>Privacy Policy</a>.</p>
+            <button class="primary-button" type="button" data-next>Continue</button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen" data-screen="4">
+          <header class="top-bar">Log in or sign up</header>
+          <div class="content style-content">
+            <h2>Let’s set up your travel style</h2>
+            <p class="subhead">These can be edited later in settings</p>
+
+            <label class="question">What budget size do you prefer in your trips?</label>
+            <div class="field-select option-select three" data-single-select>
+              <button class="field-option" type="button">Shoestring</button>
+              <button class="field-option" type="button">Moderate</button>
+              <button class="field-option" type="button">Premium</button>
+            </div>
+
+            <label class="question">What pace do you travel at?</label>
+            <div class="field-select option-select three" data-single-select>
+              <button class="field-option" type="button">Relaxed</button>
+              <button class="field-option" type="button">Balanced</button>
+              <button class="field-option" type="button">Packed</button>
+            </div>
+
+            <label class="question">Preferred accommodation style</label>
+            <div class="field-select option-select four" data-single-select>
+              <button class="field-option" type="button">Hotel</button>
+              <button class="field-option" type="button">Hostel</button>
+              <button class="field-option" type="button">Homestay</button>
+              <button class="field-option" type="button">Others</button>
+            </div>
+
+            <label class="question">What activities do you like? (select at least 3)</label>
+            <div class="chips">
+              <button>🍜 Food</button><button>🌃 Nightlife</button><button>🌳 Nature</button>
+              <button>🏔️ Adventure</button><button>🛍️ Shopping</button><button>🧘 Wellness</button>
+              <button>🪇 Culture</button><button>🚗 Road Trip</button><button>🎾 Sports</button>
+              <button class="wide">🛕 Spiritual Places</button>
+            </div>
+            <button class="primary-button bottom-action" type="button" data-next>Continue</button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen" data-screen="5">
+          <header class="top-bar">Log in or sign up</header>
+          <div class="content companion-content">
+            <h2>Tell us who you’d travel with</h2>
+            <p class="subhead">These can be edited later in settings</p>
+
+            <div class="range-row">
+              <p><span>Age range</span><b data-range-label>18-40</b></p>
+              <div class="range" data-range-min="18" data-range-max="80" data-min-value="18" data-max-value="40">
+                <div class="range-fill"></div>
+                <i data-handle="min"></i>
+                <i data-handle="max"></i>
+                <input class="range-input range-input-min" type="range" min="18" max="80" value="18" aria-label="Minimum age" />
+                <input class="range-input range-input-max" type="range" min="18" max="80" value="40" aria-label="Maximum age" />
+              </div>
+            </div>
+            <div class="range-row">
+              <p><span>Preferred group size</span><b data-range-label>4-7</b></p>
+              <div class="range group" data-range-min="3" data-range-max="10" data-min-value="4" data-max-value="7">
+                <div class="range-fill"></div>
+                <i data-handle="min"></i>
+                <i data-handle="max"></i>
+                <input class="range-input range-input-min" type="range" min="3" max="10" value="4" aria-label="Minimum group size" />
+                <input class="range-input range-input-max" type="range" min="3" max="10" value="7" aria-label="Maximum group size" />
+              </div>
+            </div>
+
+            <label class="question">Gender preference, if any</label>
+            <div class="field-select gender-select" data-single-select>
+              <button class="field-option" type="button">Male</button>
+              <button class="field-option" type="button">Female</button>
+              <button class="field-option" type="button">Open to all</button>
+            </div>
+
+            <label class="question">Language preference</label>
+            <div class="lang-field" id="langField">
+              <div class="lang-chips" id="langChips"></div>
+              <input class="lang-input" id="langInput" type="text" placeholder="Select language" autocomplete="off" />
+              <ul class="lang-suggestions" id="langSuggestions" hidden></ul>
+            </div>
+
+            <label class="question boundaries">Set your travel boundaries</label>
+            <div class="checks">
+              <label><input type="checkbox" />I prefer meeting first in public or online</label>
+              <label><input type="checkbox" />I prefer no alcohol-focused plans</label>
+              <label><input type="checkbox" />I’m comfortable sharing accommodation</label>
+              <label><input type="checkbox" />I want to avoid late-night travel</label>
+              <label><input type="checkbox" />I prefer public transport or verified cabs only</label>
+            </div>
+            <button class="primary-button bottom-action" type="button" data-next>Explore travellers</button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen explore-screen" data-screen="6">
+          <div class="explore-scroll">
+            <div class="explore-header">
+              <button class="icon-pill" type="button" aria-label="Start a new trip" data-goto="11">
+                <img src="./assets/icons/li_plus.png" alt="" />
+              </button>
+              <button class="search-pill" type="button" id="openSearchScreen">
+                <img src="./assets/icons/li_search.png" alt="" />
+                <span>Where to next?</span>
+              </button>
+            </div>
+
+            <div class="verify-card" id="verifyCard">
+              <div class="verify-card-top">
+                <div>
+                  <p class="verify-card-title">
+                    <img src="./assets/icons/li_badge-check.png" alt="" />
+                    Verify your profile
+                  </p>
+                  <p class="verify-card-copy">Verified profiles help groups feel safer and make it easier to get accepted.</p>
+                </div>
+                <button class="verify-close" type="button" aria-label="Dismiss" data-dismiss-verify-card>
+                  <img src="./assets/icons/li_x.png" alt="" />
+                </button>
+              </div>
+              <button class="primary-button verify-cta" type="button">Get verified</button>
+            </div>
+
+            <section class="explore-section">
+              <div class="explore-section-head">
+                <h3>Looking for one more</h3>
+                <button class="round-arrow" type="button" aria-label="See all">
+                  <img src="./assets/icons/Frame_625783.png" alt="" />
+                </button>
+              </div>
+              <div class="hscroll trip-row">
+                <button class="trip-card wide" type="button" data-open-tray>
+                  <div class="trip-card-image" style="background-image:url('./assets/destinations/agra.png')">
+                    <span class="badge-check"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+                    <span class="match-pill">92% match</span>
+                    <span class="closes-tag">Entry closes in 3 days</span>
+                  </div>
+                  <p class="trip-card-title">Agra, Uttar Pradesh</p>
+                  <p class="trip-card-sub">11 June-15 June · 5/6 Joined</p>
+                </button>
+                <button class="trip-card wide" type="button" data-open-tray>
+                  <div class="trip-card-image" style="background-image:url('./assets/destinations/mussoorie.png')">
+                    <span class="match-pill">95% match</span>
+                    <span class="closes-tag">Entry closes in 6 days</span>
+                  </div>
+                  <p class="trip-card-title">Mussoorie, Uttarakhand</p>
+                  <p class="trip-card-sub">11 June-15 June · 5/6 Joined</p>
+                </button>
+              </div>
+            </section>
+
+            <section class="explore-section">
+              <div class="explore-section-head">
+                <h3>Best matches for you</h3>
+                <button class="round-arrow" type="button" aria-label="See all">
+                  <img src="./assets/icons/Frame_625783.png" alt="" />
+                </button>
+              </div>
+              <div class="hscroll trip-row">
+                <button class="trip-card wide" type="button" data-open-tray>
+                  <div class="trip-card-image" style="background-image:url('./assets/destinations/dharamshala.png')">
+                    <span class="badge-check"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+                    <span class="match-pill">90% match</span>
+                  </div>
+                  <p class="trip-card-title">Dharamshala, Himachal</p>
+                  <p class="trip-card-sub">11 August-15 August · 3/6 Joined</p>
+                </button>
+                <button class="trip-card wide" type="button" data-open-tray>
+                  <div class="trip-card-image" style="background-image:url('./assets/destinations/leh_ladakh.png')">
+                    <span class="match-pill">83% match</span>
+                  </div>
+                  <p class="trip-card-title">Leh, Ladakh</p>
+                  <p class="trip-card-sub">07 August-09 August · 4/5 Joined</p>
+                </button>
+                <button class="trip-card wide" type="button" data-open-tray>
+                  <div class="trip-card-image" style="background-image:url('./assets/destinations/nainital.png')">
+                    <span class="badge-check"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+                    <span class="match-pill">80% match</span>
+                  </div>
+                  <p class="trip-card-title">Nainital, Uttarakhand</p>
+                  <p class="trip-card-sub">01 August-04 August · 1/5 Joined</p>
+                </button>
+              </div>
+            </section>
+
+            <section class="explore-section">
+              <div class="explore-section-head">
+                <h3>Trending destinations</h3>
+                <button class="round-arrow" type="button" aria-label="See all">
+                  <img src="./assets/icons/Frame_625783.png" alt="" />
+                </button>
+              </div>
+              <div class="hscroll destination-row">
+                <div class="destination-card" role="button" tabindex="0" data-goto="7">
+                  <div class="destination-card-image" style="background-image:url('./assets/destinations/goa.png')">
+                    <button type="button" class="heart" data-like-button aria-label="Like Goa" aria-pressed="false"><img data-heart-icon src="./assets/icons/Property_1_Default.svg" alt="" /></button>
+                  </div>
+                  <p class="destination-card-title">Goa</p>
+                  <p class="destination-card-sub">28 groups planning trips</p>
+                </div>
+                <div class="destination-card" role="button" tabindex="0" data-goto="7">
+                  <div class="destination-card-image" style="background-image:url('./assets/destinations/udupi.png')">
+                    <button type="button" class="heart" data-like-button aria-label="Like destination" aria-pressed="false"><img data-heart-icon src="./assets/icons/Property_1_Default.svg" alt="" /></button>
+                  </div>
+                  <p class="destination-card-title">Udupi</p>
+                  <p class="destination-card-sub">19 groups planning trips</p>
+                </div>
+                <div class="destination-card" role="button" tabindex="0" data-goto="7">
+                  <div class="destination-card-image" style="background-image:url('./assets/destinations/jaipur.png')">
+                    <button type="button" class="heart" data-like-button aria-label="Like destination" aria-pressed="false"><img data-heart-icon src="./assets/icons/Property_1_Default.svg" alt="" /></button>
+                  </div>
+                  <p class="destination-card-title">Jaipur</p>
+                  <p class="destination-card-sub">11 groups planning trips</p>
+                </div>
+              </div>
+            </section>
+
+            <p class="explore-cta-copy">Can’t find the right trip? Start a group and let matching travellers join.</p>
+            <button class="primary-button create-trip-button" type="button" data-goto="11">Create trip</button>
+          </div>
+
+          <nav class="explore-navbar">
+            <button class="nav-tab active" type="button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4ZM2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.9928 15.9931C16.3834 15.6026 17.0165 15.6026 17.4071 15.9931L21.7071 20.2931C22.0976 20.6836 22.0976 21.3168 21.7071 21.7073C21.3165 22.0978 20.6834 22.0978 20.2928 21.7073L15.9928 17.4073C15.6023 17.0168 15.6023 16.3836 15.9928 15.9931Z" fill="currentColor"/></svg>
+              <span>Explore</span>
+            </button>
+            <button class="nav-tab" type="button" data-goto="16">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.1046 4.02229C11.3294 3.87924 9.56127 4.37257 8.11654 5.414C6.67182 6.45542 5.64483 7.97697 5.21938 9.70636C4.79392 11.4357 4.99775 13.2601 5.7944 14.8529C5.91306 15.0902 5.93259 15.3648 5.84871 15.6165L4.58117 19.4191L8.3838 18.1516C8.63544 18.0677 8.9101 18.0872 9.14734 18.2059C10.7402 19.0025 12.5645 19.2064 14.2939 18.7809C16.0233 18.3554 17.5449 17.3285 18.5863 15.8837C19.6277 14.439 20.121 12.6708 19.978 10.8956C19.8349 9.12045 19.0648 7.45408 17.8055 6.19476C16.5462 4.93544 14.8798 4.16534 13.1046 4.02229ZM6.94703 3.79158C8.77701 2.47244 11.0167 1.84756 13.2653 2.02876C15.5139 2.20995 17.6246 3.1854 19.2197 4.78055C20.8149 6.37569 21.7903 8.48642 21.9715 10.735C22.1527 12.9836 21.5278 15.2233 20.2087 17.0533C18.8896 18.8832 16.9623 20.1841 14.7717 20.723C12.7186 21.2281 10.5599 21.033 8.63591 20.1757L3.31625 21.9489C2.95692 22.0687 2.56075 21.9752 2.29292 21.7074C2.02509 21.4395 1.93157 21.0434 2.05134 20.684L3.82456 15.3644C2.9673 13.4404 2.77219 11.2817 3.27729 9.22857C3.8162 7.03801 5.11704 5.11072 6.94703 3.79158Z" fill="currentColor"/></svg>
+              <span>Messages</span>
+            </button>
+            <button class="nav-tab" type="button" data-goto="9">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4ZM6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14C8.68629 14 6 11.3137 6 8Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.63604 14.636C7.32387 12.9482 9.61305 12 12 12C14.3869 12 16.6761 12.9482 18.364 14.636C20.0518 16.3239 21 18.6131 21 21C21 21.5523 20.5523 22 20 22C19.4477 22 19 21.5523 19 21C19 19.1435 18.2625 17.363 16.9497 16.0503C15.637 14.7375 13.8565 14 12 14C10.1435 14 8.36301 14.7375 7.05025 16.0503C5.7375 17.363 5 19.1435 5 21C5 21.5523 4.55228 22 4 22C3.44772 22 3 21.5523 3 21C3 18.6131 3.94821 16.3239 5.63604 14.636Z" fill="currentColor"/></svg>
+              <span>Profile</span>
+            </button>
+          </nav>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen destination-screen" data-screen="7">
+          <div class="destination-hero" style="background-image:url('./assets/destinations/Goa-full.png')">
+            <button class="hero-back" type="button" data-goto="6" aria-label="Back to Explore">
+              <img src="./assets/icons/li_chevron-right.svg" alt="" />
+            </button>
+            <div class="hero-info">
+              <p class="hero-title">Goa</p>
+              <p class="hero-sub">28 groups planning trips · Best for beaches, nightlife, food</p>
+            </div>
+          </div>
+
+          <div class="destination-scroll">
+            <div class="destination-section-head">
+              <h3>Best matching groups</h3>
+              <button class="filters-btn" type="button" data-open-tray="filtersPanel">
+                <span>Filters</span>
+                <img src="./assets/icons/list-filter.svg" alt="" />
+              </button>
+            </div>
+            <div class="groups-grid">
+              <div class="group-card">
+                <div class="group-avatars">
+                  <img class="group-avatars-img" src="./assets/groups/Card1.png" alt="" />
+                </div>
+                <p class="group-dates">07 August-09 August</p>
+                <button class="view-more-btn" type="button">View more</button>
+              </div>
+              <div class="group-card">
+                <div class="group-avatars">
+                  <img class="group-avatars-img" src="./assets/groups/Card2.png" alt="" />
+                </div>
+                <p class="group-dates">11 August-15 August</p>
+                <button class="view-more-btn" type="button" data-open-tray="trayGoa">View more</button>
+              </div>
+              <div class="group-card">
+                <div class="group-avatars">
+                  <img class="group-avatars-img" src="./assets/groups/Card3.png" alt="" />
+                </div>
+                <p class="group-dates">12 August-14 August</p>
+                <button class="view-more-btn" type="button">View more</button>
+              </div>
+              <div class="group-card">
+                <div class="group-avatars">
+                  <img class="group-avatars-img" src="./assets/groups/Card4.png" alt="" />
+                </div>
+                <p class="group-dates">12 August-14 August</p>
+                <button class="view-more-btn" type="button">View more</button>
+              </div>
+              <div class="group-card">
+                <div class="group-avatars">
+                  <img class="group-avatars-img" src="./assets/groups/Card5.png" alt="" />
+                </div>
+                <p class="group-dates">07 August-09 August</p>
+                <button class="view-more-btn" type="button">View more</button>
+              </div>
+              <div class="group-card">
+                <div class="group-avatars">
+                  <img class="group-avatars-img" src="./assets/groups/Card6.png" alt="" />
+                </div>
+                <p class="group-dates">11 August-15 August</p>
+                <button class="view-more-btn" type="button">View more</button>
+              </div>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen search-screen" data-screen="8">
+          <div class="search-screen-header">
+            <div class="search-pill search-input-wrap">
+              <img src="./assets/icons/li_search.png" alt="" />
+              <input type="text" id="locationSearchInput" placeholder="Where to next?" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="search-suggestions" id="searchSuggestions"></div>
+
+          <nav class="explore-navbar">
+            <button class="nav-tab active" type="button" data-goto="6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4ZM2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.9928 15.9931C16.3834 15.6026 17.0165 15.6026 17.4071 15.9931L21.7071 20.2931C22.0976 20.6836 22.0976 21.3168 21.7071 21.7073C21.3165 22.0978 20.6834 22.0978 20.2928 21.7073L15.9928 17.4073C15.6023 17.0168 15.6023 16.3836 15.9928 15.9931Z" fill="currentColor"/></svg>
+              <span>Explore</span>
+            </button>
+            <button class="nav-tab" type="button" data-goto="16">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.1046 4.02229C11.3294 3.87924 9.56127 4.37257 8.11654 5.414C6.67182 6.45542 5.64483 7.97697 5.21938 9.70636C4.79392 11.4357 4.99775 13.2601 5.7944 14.8529C5.91306 15.0902 5.93259 15.3648 5.84871 15.6165L4.58117 19.4191L8.3838 18.1516C8.63544 18.0677 8.9101 18.0872 9.14734 18.2059C10.7402 19.0025 12.5645 19.2064 14.2939 18.7809C16.0233 18.3554 17.5449 17.3285 18.5863 15.8837C19.6277 14.439 20.121 12.6708 19.978 10.8956C19.8349 9.12045 19.0648 7.45408 17.8055 6.19476C16.5462 4.93544 14.8798 4.16534 13.1046 4.02229ZM6.94703 3.79158C8.77701 2.47244 11.0167 1.84756 13.2653 2.02876C15.5139 2.20995 17.6246 3.1854 19.2197 4.78055C20.8149 6.37569 21.7903 8.48642 21.9715 10.735C22.1527 12.9836 21.5278 15.2233 20.2087 17.0533C18.8896 18.8832 16.9623 20.1841 14.7717 20.723C12.7186 21.2281 10.5599 21.033 8.63591 20.1757L3.31625 21.9489C2.95692 22.0687 2.56075 21.9752 2.29292 21.7074C2.02509 21.4395 1.93157 21.0434 2.05134 20.684L3.82456 15.3644C2.9673 13.4404 2.77219 11.2817 3.27729 9.22857C3.8162 7.03801 5.11704 5.11072 6.94703 3.79158Z" fill="currentColor"/></svg>
+              <span>Messages</span>
+            </button>
+            <button class="nav-tab" type="button" data-goto="9">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4ZM6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14C8.68629 14 6 11.3137 6 8Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.63604 14.636C7.32387 12.9482 9.61305 12 12 12C14.3869 12 16.6761 12.9482 18.364 14.636C20.0518 16.3239 21 18.6131 21 21C21 21.5523 20.5523 22 20 22C19.4477 22 19 21.5523 19 21C19 19.1435 18.2625 17.363 16.9497 16.0503C15.637 14.7375 13.8565 14 12 14C10.1435 14 8.36301 14.7375 7.05025 16.0503C5.7375 17.363 5 19.1435 5 21C5 21.5523 4.55228 22 4 22C3.44772 22 3 21.5523 3 21C3 18.6131 3.94821 16.3239 5.63604 14.636Z" fill="currentColor"/></svg>
+              <span>Profile</span>
+            </button>
+          </nav>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen profile-screen" data-screen="9">
+          <div class="profile-scroll">
+            <div class="profile-avatar-wrap">
+              <img class="profile-avatar" src="./assets/profile/sameer-profile.png" alt="" />
+            </div>
+            <div class="profile-name-row">
+              <p class="profile-name">Sameer Sharma</p>
+              <img class="profile-name-badge" src="./assets/icons/li_badge-check-2.svg" alt="" />
+            </div>
+            <div class="profile-meta-row">
+              <span>24 yrs</span>
+              <span class="profile-meta-location">
+                <img src="./assets/icons/li_map-pin.svg" alt="" />
+                Delhi, India
+              </span>
+            </div>
+            <button type="button" class="profile-edit-btn">
+              <img src="./assets/icons/li_pencil.svg" alt="" />
+              Edit profile
+            </button>
+
+            <div class="profile-card profile-about-card">
+              <p class="profile-card-title">About</p>
+              <img src="./assets/icons/li_plus.svg" alt="" class="profile-plus-icon" />
+            </div>
+
+            <div class="profile-card">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Verification and Reviews</p>
+                <img src="./assets/icons/li_chevron-down-circle.svg" alt="" class="profile-chevron-icon" />
+              </div>
+              <div class="profile-card-body">
+                <div class="profile-card-body-inner">
+                  <hr />
+                  <div class="profile-row">
+                    <span>ID verification</span>
+                    <button type="button" class="profile-verify-pill" id="profileVerifyPill">Get verified</button>
+                    <span class="profile-verify-complete" id="profileVerifyComplete" hidden>Complete</span>
+                  </div>
+                  <div class="profile-row">
+                    <span>Completed Trips</span>
+                    <b>3</b>
+                  </div>
+                  <div class="profile-row">
+                    <span>Average rating</span>
+                    <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5</span>
+                  </div>
+                  <div class="hscroll profile-reviews-row">
+                    <div class="review-card">
+                      <p class="review-quote">"Had an amazing adventure in Jaisalmer with Sameer. A fun person to tag along with."</p>
+                      <div class="review-footer">
+                        <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5</span>
+                        <span class="review-author">
+                          <img src="./assets/profile/aarushi.png" alt="" />
+                          Aarushi
+                        </span>
+                      </div>
+                    </div>
+                    <div class="review-card">
+                      <p class="review-quote">"Sameer is fun to travel with. I visited Goa with him and had an amazing time."</p>
+                      <div class="review-footer">
+                        <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5.0</span>
+                        <span class="review-author">
+                          <img src="./assets/profile/yukta.png" alt="" />
+                          Yukta
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="profile-view-all">View all</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-card">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Travel Preferences</p>
+                <div class="profile-card-head-icons">
+                  <img src="./assets/icons/Frame_625877.svg" alt="" class="profile-pencil-icon" />
+                  <img src="./assets/icons/li_chevron-down-circle.svg" alt="" class="profile-chevron-icon" />
+                </div>
+              </div>
+              <div class="profile-card-body">
+                <div class="profile-card-body-inner">
+                  <hr />
+                  <div class="profile-row">
+                    <span>Budget</span>
+                    <span>Moderate</span>
+                  </div>
+                  <div class="profile-row">
+                    <span>Pace</span>
+                    <span>Packed</span>
+                  </div>
+                  <div class="profile-row">
+                    <span>Accomodation</span>
+                    <span>Homestay</span>
+                  </div>
+                  <p class="profile-subhead">Activities</p>
+                  <div class="profile-chips-row">
+                    <span class="profile-chip">🍜 Food</span>
+                    <span class="profile-chip">🏔️ Adventure</span>
+                    <span class="profile-chip">🎾 Sports</span>
+                    <span class="profile-chip">🪇 Culture</span>
+                    <span class="profile-chip">🌳 Nature</span>
+                  </div>
+                  <div class="profile-row">
+                    <span>Age range</span>
+                    <span>22-24</span>
+                  </div>
+                  <div class="profile-row">
+                    <span>Group size</span>
+                    <span>4-6</span>
+                  </div>
+                  <div class="profile-row">
+                    <span>Gender preference</span>
+                    <span>Open to all</span>
+                  </div>
+                  <div class="profile-row">
+                    <span>Language preference</span>
+                    <span>English, Hindi</span>
+                  </div>
+                  <label class="filters-toggle-row profile-toggle-row">
+                    <span>Public/Online Meeting</span>
+                    <input type="checkbox" checked />
+                  </label>
+                  <label class="filters-toggle-row profile-toggle-row">
+                    <span>No alcohol focused plans</span>
+                    <input type="checkbox" checked />
+                  </label>
+                  <label class="filters-toggle-row profile-toggle-row">
+                    <span>Sharing accommodation</span>
+                    <input type="checkbox" checked />
+                  </label>
+                  <label class="filters-toggle-row profile-toggle-row">
+                    <span>Late night travel</span>
+                    <input type="checkbox" checked />
+                  </label>
+                  <label class="filters-toggle-row profile-toggle-row">
+                    <span>Public transport/Verified cabs only</span>
+                    <input type="checkbox" checked />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-card">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Account</p>
+                <img src="./assets/icons/li_chevron-down-circle.svg" alt="" class="profile-chevron-icon" />
+              </div>
+              <div class="profile-card-body">
+                <div class="profile-card-body-inner">
+                  <hr />
+                  <p class="profile-account-row">Drafts</p>
+                  <p class="profile-account-row">Saved</p>
+                  <p class="profile-account-row">Terms/Privacy</p>
+                  <p class="profile-account-row">Help and Support</p>
+                  <p class="profile-account-row profile-logout">Logout</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="explore-navbar profile-navbar">
+            <button class="nav-tab" type="button" data-goto="6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4ZM2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.9928 15.9931C16.3834 15.6026 17.0165 15.6026 17.4071 15.9931L21.7071 20.2931C22.0976 20.6836 22.0976 21.3168 21.7071 21.7073C21.3165 22.0978 20.6834 22.0978 20.2928 21.7073L15.9928 17.4073C15.6023 17.0168 15.6023 16.3836 15.9928 15.9931Z" fill="currentColor"/></svg>
+              <span>Explore</span>
+            </button>
+            <button class="nav-tab" type="button" data-goto="16">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.1046 4.02229C11.3294 3.87924 9.56127 4.37257 8.11654 5.414C6.67182 6.45542 5.64483 7.97697 5.21938 9.70636C4.79392 11.4357 4.99775 13.2601 5.7944 14.8529C5.91306 15.0902 5.93259 15.3648 5.84871 15.6165L4.58117 19.4191L8.3838 18.1516C8.63544 18.0677 8.9101 18.0872 9.14734 18.2059C10.7402 19.0025 12.5645 19.2064 14.2939 18.7809C16.0233 18.3554 17.5449 17.3285 18.5863 15.8837C19.6277 14.439 20.121 12.6708 19.978 10.8956C19.8349 9.12045 19.0648 7.45408 17.8055 6.19476C16.5462 4.93544 14.8798 4.16534 13.1046 4.02229ZM6.94703 3.79158C8.77701 2.47244 11.0167 1.84756 13.2653 2.02876C15.5139 2.20995 17.6246 3.1854 19.2197 4.78055C20.8149 6.37569 21.7903 8.48642 21.9715 10.735C22.1527 12.9836 21.5278 15.2233 20.2087 17.0533C18.8896 18.8832 16.9623 20.1841 14.7717 20.723C12.7186 21.2281 10.5599 21.033 8.63591 20.1757L3.31625 21.9489C2.95692 22.0687 2.56075 21.9752 2.29292 21.7074C2.02509 21.4395 1.93157 21.0434 2.05134 20.684L3.82456 15.3644C2.9673 13.4404 2.77219 11.2817 3.27729 9.22857C3.8162 7.03801 5.11704 5.11072 6.94703 3.79158Z" fill="currentColor"/></svg>
+              <span>Messages</span>
+            </button>
+            <button class="nav-tab active" type="button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4ZM6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14C8.68629 14 6 11.3137 6 8Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.63604 14.636C7.32387 12.9482 9.61305 12 12 12C14.3869 12 16.6761 12.9482 18.364 14.636C20.0518 16.3239 21 18.6131 21 21C21 21.5523 20.5523 22 20 22C19.4477 22 19 21.5523 19 21C19 19.1435 18.2625 17.363 16.9497 16.0503C15.637 14.7375 13.8565 14 12 14C10.1435 14 8.36301 14.7375 7.05025 16.0503C5.7375 17.363 5 19.1435 5 21C5 21.5523 4.55228 22 4 22C3.44772 22 3 21.5523 3 21C3 18.6131 3.94821 16.3239 5.63604 14.636Z" fill="currentColor"/></svg>
+              <span>Profile</span>
+            </button>
+          </nav>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen verify-screen" data-screen="10">
+          <header class="verify-header">
+            <button type="button" class="verify-back" id="verifyBackBtn" aria-label="Back">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289C10.0976 5.68342 10.0976 6.31658 9.70711 6.70711L4.41421 12L9.70711 17.2929C10.0976 17.6834 10.0976 18.3166 9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071L2.29289 12.7071C1.90237 12.3166 1.90237 11.6834 2.29289 11.2929L8.29289 5.29289Z" fill="#18181B"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 11.4477 2.44772 11 3 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H3C2.44772 13 2 12.5523 2 12Z" fill="#18181B"/></svg>
+            </button>
+            <p class="verify-header-title">Identity Verification</p>
+          </header>
+
+          <div class="verify-content">
+            <p class="verify-title">Verify your identity</p>
+            <p class="verify-subtitle">A government ID helps us keep traveller matches safer and more trusted.</p>
+
+            <div class="verify-file-preview" id="verifyFilePreview" hidden>
+              <div class="verify-file-image" style="background-image:url('./assets/verify/aadhar-card.png')"></div>
+              <div class="verify-file-row">
+                <span class="verify-file-icon">
+                  <img src="./assets/icons/Simple_Border.svg" alt="" />
+                </span>
+                <p class="verify-file-name">Name_Aadhar.pdf</p>
+              </div>
+            </div>
+
+            <button type="button" class="verify-action-btn verify-camera-btn" id="verifyCameraBtn">
+              <img src="./assets/icons/camera.svg" alt="" />
+              <span>Take a picture</span>
+            </button>
+            <div class="verify-divider verify-divider-fixed"><span></span><em>or</em><span></span></div>
+            <button type="button" class="verify-action-btn verify-upload-btn" id="verifyUploadBtn">
+              <img src="./assets/icons/upload.svg" alt="" />
+              <span>Upload from device</span>
+            </button>
+
+            <button type="button" class="primary-button verify-submit-btn" id="verifySubmitBtn" hidden>Verify</button>
+          </div>
+
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen trip-screen" data-screen="11">
+          <header class="top-bar">Create Trip</header>
+          <div class="trip-progress"><div class="trip-progress-fill" style="width:20%"></div></div>
+          <button type="button" class="trip-back" data-goto="6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="#F31260"/></svg>
+            <span>Back</span>
+          </button>
+          <h2 class="trip-step-title">Where are you going?</h2>
+
+          <div class="content trip-content">
+            <div class="trip-map-group">
+              <div class="trip-map-wrap">
+                <img src="./assets/verify/map-preview.png" alt="" />
+              </div>
+              <input class="field" type="text" placeholder="Location" />
+            </div>
+            <button type="button" class="primary-button" data-next>Continue</button>
+          </div>
+
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen trip-screen" data-screen="12">
+          <header class="top-bar">Create Trip</header>
+          <div class="trip-progress"><div class="trip-progress-fill" style="width:40%"></div></div>
+          <button type="button" class="trip-back" data-goto="11">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="#F31260"/></svg>
+            <span>Back</span>
+          </button>
+          <h2 class="trip-step-title">When is the trip?</h2>
+
+          <div class="content trip-content trip-content-spaced">
+            <div class="trip-calendar-card">
+              <div class="calendar-header">
+                <button type="button" class="calendar-nav" id="tripCalendarPrev" aria-label="Previous month">‹</button>
+                <p class="calendar-month-label" id="tripCalendarMonthLabel"></p>
+                <button type="button" class="calendar-nav" id="tripCalendarNext" aria-label="Next month">›</button>
+              </div>
+              <div class="calendar-weekdays">
+                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+              </div>
+              <div class="calendar-grid" id="tripCalendarGrid"></div>
+              <hr />
+              <div class="trip-date-chips">
+                <button type="button" class="chip-outline">This weekend</button>
+                <button type="button" class="chip-outline">Next weekend</button>
+              </div>
+              <div class="checks trip-date-checks">
+                <label><input type="checkbox" />One day trip</label>
+                <label><input type="checkbox" />Flexible dates</label>
+              </div>
+            </div>
+            <button type="button" class="primary-button" data-next>Continue</button>
+          </div>
+
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen trip-screen" data-screen="13">
+          <header class="top-bar">Create Trip</header>
+          <div class="trip-progress"><div class="trip-progress-fill" style="width:60%"></div></div>
+          <button type="button" class="trip-back" data-goto="12">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="#F31260"/></svg>
+            <span>Back</span>
+          </button>
+          <h2 class="trip-step-title">Trip size and style</h2>
+
+          <div class="content trip-content trip-content-39">
+            <div class="trip-fields-group">
+              <div class="trip-field">
+                <div class="trip-field-head">
+                  <span>How many travellers can join?</span>
+                  <b id="travellerCountLabel">6</b>
+                </div>
+                <div class="single-range" data-single-range-min="2" data-single-range-max="10" data-single-range-value="6" data-single-range-target="travellerCountLabel">
+                  <div class="single-range-fill"></div>
+                  <i data-handle="single"></i>
+                  <input class="range-input" type="range" min="2" max="10" value="6" aria-label="Number of travellers" />
+                </div>
+              </div>
+
+              <div class="trip-field">
+                <p class="trip-field-label">Enter a budget estimate</p>
+                <input class="field" type="text" inputmode="numeric" placeholder="recommended: 10,000" />
+              </div>
+
+              <div class="trip-field">
+                <p class="trip-field-label">What pace do you travel at?</p>
+                <div class="field-select option-select three" data-single-select>
+                  <button class="field-option" type="button">Relaxed</button>
+                  <button class="field-option" type="button">Balanced</button>
+                  <button class="field-option selected" type="button">Packed</button>
+                </div>
+              </div>
+
+              <div class="trip-field">
+                <p class="trip-field-label">Preferred accommodation style</p>
+                <div class="field-select option-select four" data-single-select>
+                  <button class="field-option" type="button">Hotel</button>
+                  <button class="field-option" type="button">Hostel</button>
+                  <button class="field-option selected" type="button">Homestay</button>
+                  <button class="field-option" type="button">Others</button>
+                </div>
+              </div>
+
+              <div class="trip-field">
+                <p class="trip-field-label">Which mode of transport do you prefer?</p>
+                <div class="trip-select-field">
+                  <select id="tripTransportSelect">
+                    <option value="" disabled selected>Select</option>
+                    <option value="bus">Bus</option>
+                    <option value="car">Car</option>
+                    <option value="bike">Bike</option>
+                    <option value="train">Train</option>
+                    <option value="flight">Flight</option>
+                    <option value="not-decided">Not decided</option>
+                  </select>
+                  <img src="./assets/icons/li_chevron-right-filter.svg" alt="" class="trip-select-chevron" />
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="primary-button" data-next>Continue</button>
+          </div>
+
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen trip-screen" data-screen="14">
+          <header class="top-bar">Create Trip</header>
+          <div class="trip-progress"><div class="trip-progress-fill" style="width:80%"></div></div>
+          <button type="button" class="trip-back" data-goto="13">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="#F31260"/></svg>
+            <span>Back</span>
+          </button>
+          <h2 class="trip-step-title">Activities and Safety</h2>
+
+          <div class="content trip-content trip-content-113">
+            <div class="trip-fields-group">
+              <div class="trip-field">
+                <p class="trip-field-label">What activities do you like? (select at least 3)</p>
+                <div class="chips trip-chips-grid">
+                  <button class="selected">🍜 Food</button><button>🌃 Nightlife</button><button>🌳 Nature</button>
+                  <button>🏔️ Adventure</button><button>🛍️ Shopping</button><button>🧘 Wellness</button>
+                  <button class="selected">🪇 Culture</button><button>🚗 Road Trip</button><button class="selected">🎾 Sports</button>
+                  <button class="wide">🛕 Spiritual Places</button>
+                </div>
+              </div>
+
+              <div class="trip-field trip-field-gap8">
+                <p class="trip-field-label">Set your travel boundaries</p>
+                <div class="checks trip-boundary-checks">
+                  <label><input type="checkbox" checked />I prefer meeting first in public or online</label>
+                  <label><input type="checkbox" checked />I prefer no alcohol-focused plans</label>
+                  <label><input type="checkbox" checked />I'm comfortable sharing accommodation</label>
+                  <label><input type="checkbox" />I want to avoid late-night travel</label>
+                  <label><input type="checkbox" />I prefer public transport or verified cabs only</label>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="primary-button" data-next>Continue</button>
+          </div>
+
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen trip-screen" data-screen="15">
+          <header class="top-bar">Create Trip</header>
+          <div class="trip-progress"><div class="trip-progress-fill" style="width:100%"></div></div>
+          <button type="button" class="trip-back" data-goto="14">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="#F31260"/></svg>
+            <span>Back</span>
+          </button>
+          <h2 class="trip-step-title">Trip Description</h2>
+
+          <div class="content trip-content trip-content-125">
+            <div class="trip-fields-group">
+              <div class="trip-field">
+                <p class="trip-field-label">Starting city</p>
+                <input class="field trip-city-field" type="text" value="Delhi" />
+              </div>
+
+              <div class="trip-field">
+                <p class="trip-field-label">Give a short description <span class="trip-field-label-optional">(optional)</span></p>
+                <textarea class="field trip-description-field" placeholder="Enter description"></textarea>
+              </div>
+            </div>
+
+            <div class="trip-final-actions">
+              <button type="button" class="trip-save-draft-btn" data-goto="6">Save Draft</button>
+              <button type="button" class="primary-button" data-goto="6">Publish Trip</button>
+            </div>
+          </div>
+
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen messages-screen" data-screen="16">
+          <div class="messages-header">
+            <button type="button" class="search-pill" data-goto="8">
+              <img src="./assets/icons/li_search.png" alt="" />
+              <span>Search all messages</span>
+            </button>
+          </div>
+
+          <div class="messages-tabs">
+            <button type="button" class="messages-tab active" data-messages-tab="active">Active</button>
+            <button type="button" class="messages-tab" data-messages-tab="sent">Sent Requests</button>
+            <button type="button" class="messages-tab" data-messages-tab="inbox">Inbox</button>
+            <button type="button" class="messages-tab" data-messages-tab="past">Past</button>
+          </div>
+
+          <div class="messages-content">
+            <div class="messages-panel active" data-messages-panel="active">
+              <div class="messages-card" data-goto="17">
+                <div class="messages-card-head">
+                  <div class="msg-avatars">
+                    <img class="msg-avatar msg-avatar-a" src="./assets/tray/sameer.png" alt="" />
+                    <img class="msg-avatar msg-avatar-b" src="./assets/tray/agastya.png" alt="" />
+                    <img class="msg-avatar msg-avatar-c" src="./assets/tray/jiya.png" alt="" />
+                  </div>
+                  <div class="messages-card-title">
+                    <p>Sameer, Agastya, Jiya</p>
+                    <p class="messages-card-subtitle">Jaipur | 11 August-15 August</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="messages-card-foot">
+                  <div class="messages-last-msg">
+                    <img class="messages-last-msg-avatar" src="./assets/tray/agastya.png" alt="" />
+                    <p>I am planning to visit Jal Mahal</p>
+                  </div>
+                  <div class="messages-time-unread">
+                    <span class="messages-time messages-time-accent">1:58 pm</span>
+                    <span class="messages-unread-badge">2</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="messages-card" data-goto="17">
+                <div class="messages-card-head">
+                  <div class="msg-avatars">
+                    <img class="msg-avatar msg-avatar-a" src="./assets/tray/sameer.png" alt="" />
+                    <img class="msg-avatar msg-avatar-b" src="./assets/tray/agastya.png" alt="" />
+                    <img class="msg-avatar msg-avatar-c" src="./assets/tray/jiya.png" alt="" />
+                  </div>
+                  <div class="messages-card-title">
+                    <p>Sameer, Agastya, Jiya</p>
+                    <p class="messages-card-subtitle">Jaipur | 11 August-15 August</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="messages-card-foot">
+                  <div class="messages-last-msg">
+                    <img class="messages-last-msg-avatar" src="./assets/tray/agastya.png" alt="" />
+                    <p>I am planning to visit Jal Mahal</p>
+                  </div>
+                  <div class="messages-time-unread">
+                    <span class="messages-time">2 hr ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="messages-panel" data-messages-panel="sent">
+              <div class="messages-card">
+                <div class="messages-card-head">
+                  <div class="msg-avatars">
+                    <img class="msg-avatar msg-avatar-a" src="./assets/tray/sameer.png" alt="" />
+                    <img class="msg-avatar msg-avatar-b" src="./assets/tray/agastya.png" alt="" />
+                    <img class="msg-avatar msg-avatar-c" src="./assets/tray/jiya.png" alt="" />
+                  </div>
+                  <div class="messages-card-title">
+                    <p>Sameer, Agastya, Jiya</p>
+                    <p class="messages-card-subtitle">Jaipur | 11 August-15 August</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="messages-sent-status">
+                  <span>The host has not seen your request yet</span>
+                  <b>Sent 2hr ago</b>
+                </div>
+              </div>
+
+              <div class="messages-flip-card">
+                <div class="messages-flip-inner" id="requestFlipInner">
+                  <div class="messages-flip-face messages-flip-front">
+                    <div class="messages-card-head">
+                      <div class="msg-avatars">
+                        <img class="msg-avatar msg-avatar-a" src="./assets/tray/sameer.png" alt="" />
+                        <img class="msg-avatar msg-avatar-b" src="./assets/tray/agastya.png" alt="" />
+                        <img class="msg-avatar msg-avatar-c" src="./assets/tray/jiya.png" alt="" />
+                      </div>
+                      <div class="messages-card-title">
+                        <p>Sameer, Agastya, Jiya</p>
+                        <p class="messages-card-subtitle">Jaipur | 11 August-15 August</p>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="messages-reject-row">
+                      <span class="messages-reject-pill">The host has rejected your request</span>
+                      <button type="button" class="messages-see-why" data-flip-request>See Why?</button>
+                    </div>
+                  </div>
+
+                  <div class="messages-flip-face messages-flip-back">
+                    <button type="button" class="messages-flip-back-btn" data-flip-request aria-label="Back">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="#18181B"/></svg>
+                    </button>
+                    <div class="messages-flip-back-content">
+                      <p class="messages-flip-back-text">The host identified missing credentials in your profile</p>
+                      <hr />
+                      <button type="button" class="messages-complete-profile-link" data-goto="9">Complete profile</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="messages-panel" data-messages-panel="inbox">
+              <div class="messages-empty-state">
+                <img src="./assets/icons/li_inbox.svg" alt="" class="messages-empty-icon" />
+                <p class="messages-empty-title">You don't have any requests in your inbox</p>
+                <p class="messages-empty-subtitle">Create a trip to receive requests</p>
+                <button type="button" class="primary-button messages-empty-cta" data-goto="11">Create trip</button>
+              </div>
+            </div>
+
+            <div class="messages-panel" data-messages-panel="past">
+              <div class="messages-card messages-past-card">
+                <span class="messages-status-badge messages-status-completed">Completed</span>
+                <div class="messages-card-head">
+                  <div class="msg-avatars msg-avatars-plus">
+                    <img class="msg-avatars-composite" src="./assets/groups/past-trip-plus7.png" alt="" />
+                  </div>
+                  <div class="messages-card-title">
+                    <p>Sameer, Agastya, Jiya</p>
+                    <p class="messages-card-subtitle">Jaipur | 4 January-6 January</p>
+                  </div>
+                </div>
+                <hr />
+                <button type="button" class="messages-see-reviews-btn">See reviews</button>
+              </div>
+
+              <div class="messages-card messages-past-card">
+                <span class="messages-status-badge messages-status-cancelled">Cancelled</span>
+                <div class="messages-card-head">
+                  <div class="msg-avatars">
+                    <img class="msg-avatar msg-avatar-a" src="./assets/tray/sameer.png" alt="" />
+                    <img class="msg-avatar msg-avatar-b" src="./assets/tray/agastya.png" alt="" />
+                    <img class="msg-avatar msg-avatar-c" src="./assets/tray/jiya.png" alt="" />
+                  </div>
+                  <div class="messages-card-title">
+                    <p>Sameer, Agastya, Jiya</p>
+                    <p class="messages-card-subtitle">Jaipur | 4 January-6 January</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="explore-navbar messages-navbar">
+            <button class="nav-tab" type="button" data-goto="6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4ZM2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.9928 15.9931C16.3834 15.6026 17.0165 15.6026 17.4071 15.9931L21.7071 20.2931C22.0976 20.6836 22.0976 21.3168 21.7071 21.7073C21.3165 22.0978 20.6834 22.0978 20.2928 21.7073L15.9928 17.4073C15.6023 17.0168 15.6023 16.3836 15.9928 15.9931Z" fill="currentColor"/></svg>
+              <span>Explore</span>
+            </button>
+            <button class="nav-tab active" type="button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.1046 4.02229C11.3294 3.87924 9.56127 4.37257 8.11654 5.414C6.67182 6.45542 5.64483 7.97697 5.21938 9.70636C4.79392 11.4357 4.99775 13.2601 5.7944 14.8529C5.91306 15.0902 5.93259 15.3648 5.84871 15.6165L4.58117 19.4191L8.3838 18.1516C8.63544 18.0677 8.9101 18.0872 9.14734 18.2059C10.7402 19.0025 12.5645 19.2064 14.2939 18.7809C16.0233 18.3554 17.5449 17.3285 18.5863 15.8837C19.6277 14.439 20.121 12.6708 19.978 10.8956C19.8349 9.12045 19.0648 7.45408 17.8055 6.19476C16.5462 4.93544 14.8798 4.16534 13.1046 4.02229ZM6.94703 3.79158C8.77701 2.47244 11.0167 1.84756 13.2653 2.02876C15.5139 2.20995 17.6246 3.1854 19.2197 4.78055C20.8149 6.37569 21.7903 8.48642 21.9715 10.735C22.1527 12.9836 21.5278 15.2233 20.2087 17.0533C18.8896 18.8832 16.9623 20.1841 14.7717 20.723C12.7186 21.2281 10.5599 21.033 8.63591 20.1757L3.31625 21.9489C2.95692 22.0687 2.56075 21.9752 2.29292 21.7074C2.02509 21.4395 1.93157 21.0434 2.05134 20.684L3.82456 15.3644C2.9673 13.4404 2.77219 11.2817 3.27729 9.22857C3.8162 7.03801 5.11704 5.11072 6.94703 3.79158Z" fill="currentColor"/></svg>
+              <span>Messages</span>
+            </button>
+            <button class="nav-tab" type="button" data-goto="9">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4ZM6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14C8.68629 14 6 11.3137 6 8Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.63604 14.636C7.32387 12.9482 9.61305 12 12 12C14.3869 12 16.6761 12.9482 18.364 14.636C20.0518 16.3239 21 18.6131 21 21C21 21.5523 20.5523 22 20 22C19.4477 22 19 21.5523 19 21C19 19.1435 18.2625 17.363 16.9497 16.0503C15.637 14.7375 13.8565 14 12 14C10.1435 14 8.36301 14.7375 7.05025 16.0503C5.7375 17.363 5 19.1435 5 21C5 21.5523 4.55228 22 4 22C3.44772 22 3 21.5523 3 21C3 18.6131 3.94821 16.3239 5.63604 14.636Z" fill="currentColor"/></svg>
+              <span>Profile</span>
+            </button>
+          </nav>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen chat-screen" data-screen="17">
+          <header class="chat-header">
+            <button type="button" class="chat-back" data-goto="16" aria-label="Back">
+              <img src="./assets/icons/li_chevron-down.svg" alt="" />
+            </button>
+            <div class="chat-header-body" data-goto="18">
+              <div class="msg-avatars chat-header-avatars">
+                <img class="msg-avatar msg-avatar-a" src="./assets/tray/sameer.png" alt="" />
+                <img class="msg-avatar msg-avatar-b" src="./assets/tray/agastya.png" alt="" />
+                <img class="msg-avatar msg-avatar-c" src="./assets/tray/jiya.png" alt="" />
+              </div>
+              <div class="chat-header-title">
+                <p>Sameer, Agastya, Jiya, Dev</p>
+                <p class="chat-header-subtitle">2 online</p>
+              </div>
+            </div>
+            <div class="chat-header-actions">
+              <button type="button" aria-label="Call">
+                <img src="./assets/icons/li_phone.svg" alt="" />
+              </button>
+              <button type="button" aria-label="Video call">
+                <img src="./assets/icons/li_video.svg" alt="" />
+              </button>
+            </div>
+          </header>
+
+          <div class="chat-scroll" id="chatScroll">
+            <div class="chat-system-msg">Jiya joined the group. Say Hi!</div>
+            <div class="chat-system-msg">Agastya joined the group. Say Hi!</div>
+            <div class="chat-system-msg">Dev joined the group. Say Hi!</div>
+
+            <div class="chat-bubble-row received">
+              <img class="chat-bubble-avatar" src="./assets/tray/jiya.png" alt="" />
+              <div class="chat-bubble-col">
+                <div class="chat-bubble">Hey! I see you are visiting Jaipur</div>
+                <span class="chat-time">1:39 PM</span>
+              </div>
+            </div>
+
+            <div class="chat-bubble-row sent">
+              <div class="chat-bubble-col">
+                <div class="chat-bubble chat-bubble-sent">Hello, yeah I am. I want to explore the place and its cafes :)</div>
+                <span class="chat-time">1:41 PM</span>
+              </div>
+            </div>
+
+            <div class="chat-bubble-row received">
+              <img class="chat-bubble-avatar" src="./assets/tray/sameer.png" alt="" />
+              <div class="chat-bubble-col">
+                <div class="chat-bubble">Welcome to the group Dev</div>
+                <span class="chat-time">1:39 PM</span>
+              </div>
+            </div>
+
+            <div class="chat-bubble-row sent">
+              <div class="chat-bubble-col">
+                <div class="chat-bubble chat-bubble-sent">Thanks for accepting my request</div>
+                <span class="chat-time">1:41 PM</span>
+              </div>
+            </div>
+
+            <div class="chat-bubble-row received">
+              <img class="chat-bubble-avatar" src="./assets/tray/agastya.png" alt="" />
+              <div class="chat-bubble-col">
+                <div class="chat-bubble">Hi all, should we have a video call at 9:30 today</div>
+                <span class="chat-time">1:39 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-bar">
+            <div class="chat-input-pill">
+              <img src="./assets/icons/li_smile.svg" alt="" />
+              <input type="text" placeholder="Message" id="chatMessageInput" />
+              <div class="chat-input-icons">
+                <img src="./assets/icons/li_paperclip.svg" alt="" />
+                <img src="./assets/icons/li_camera.svg" alt="" />
+              </div>
+            </div>
+            <button type="button" class="chat-mic-btn" id="chatSendBtn" aria-label="Send message">
+              <img src="./assets/icons/li_mic.svg" alt="" id="chatSendBtnIcon" />
+            </button>
+          </div>
+
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen group-info-screen" data-screen="18">
+          <div class="group-info-scroll">
+            <div class="group-info-hero" style="background-image:url('./assets/destinations/jaipur.png')">
+              <button type="button" class="hero-back" data-goto="17" aria-label="Back to chat">
+                <img src="./assets/icons/li_chevron-right.svg" alt="" />
+              </button>
+              <span class="badge-check group-info-hero-badge"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              <p class="group-info-hero-title">Jaipur, Rajasthan</p>
+              <p class="group-info-hero-sub">11 August-15 August · 4/6 Joined</p>
+            </div>
+
+            <h3 class="group-info-section-title">Members</h3>
+            <div class="group-info-member" data-goto="19">
+              <div class="group-info-member-avatar">
+                <img src="./assets/tray/sameer.png" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <div class="group-info-member-info">
+                <p>Sameer Sharma</p>
+                <div class="group-info-member-meta">
+                  <span>24 yrs</span>
+                  <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5.0 (35)</span>
+                  <span class="group-info-member-location"><img src="./assets/icons/li_map-pin.svg" alt="" />Delhi</span>
+                </div>
+              </div>
+              <span class="group-info-host-pill">Host</span>
+            </div>
+            <div class="group-info-member" data-goto="19">
+              <div class="group-info-member-avatar">
+                <img src="./assets/tray/agastya.png" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <div class="group-info-member-info">
+                <p>Agastya Sinha</p>
+                <div class="group-info-member-meta">
+                  <span>24 yrs</span>
+                  <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />4.9 (23)</span>
+                  <span class="group-info-member-location"><img src="./assets/icons/li_map-pin.svg" alt="" />Gurgaon</span>
+                </div>
+              </div>
+            </div>
+            <div class="group-info-member" data-goto="19">
+              <div class="group-info-member-avatar">
+                <img src="./assets/tray/jiya.png" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <div class="group-info-member-info">
+                <p>Jiya Sharma</p>
+                <div class="group-info-member-meta">
+                  <span>24 yrs</span>
+                  <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5.0 (14)</span>
+                  <span class="group-info-member-location"><img src="./assets/icons/li_map-pin.svg" alt="" />Delhi</span>
+                </div>
+              </div>
+            </div>
+            <div class="group-info-member" data-goto="19">
+              <div class="group-info-member-avatar">
+                <img src="./assets/icons/li_user-circle-2.svg" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <div class="group-info-member-info">
+                <p>You</p>
+                <div class="group-info-member-meta">
+                  <span>24 yrs</span>
+                  <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5.0 (8)</span>
+                  <span class="group-info-member-location"><img src="./assets/icons/li_map-pin.svg" alt="" />Gurgaon</span>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="group-info-section-title">Trip Details</h3>
+            <div class="profile-card">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Places to visit</p>
+                <img src="./assets/icons/li_chevron-down-circle.svg" alt="" class="profile-chevron-icon" />
+              </div>
+              <div class="profile-card-body">
+                <div class="group-info-place-row" data-place-voters="jiya,agastya" data-place-you-voted="true">
+                  <span>Amber Fort</span>
+                  <div class="group-info-place-votes">
+                    <div class="place-voter-avatars"></div>
+                    <button type="button" class="place-vote-btn" aria-label="Vote for Amber Fort"></button>
+                  </div>
+                </div>
+                <div class="group-info-place-row" data-place-voters="" data-place-you-voted="false">
+                  <span>City Palace</span>
+                  <div class="group-info-place-votes">
+                    <div class="place-voter-avatars"></div>
+                    <button type="button" class="place-vote-btn" aria-label="Vote for City Palace"></button>
+                  </div>
+                </div>
+                <div class="group-info-place-row" data-place-voters="jiya,agastya,sameer" data-place-you-voted="false">
+                  <span>Jal Mahal</span>
+                  <div class="group-info-place-votes">
+                    <div class="place-voter-avatars"></div>
+                    <button type="button" class="place-vote-btn" aria-label="Vote for Jal Mahal"></button>
+                  </div>
+                </div>
+                <div class="group-info-place-row" data-place-voters="jiya,agastya,sameer" data-place-you-voted="true">
+                  <span>Hawa Mahal</span>
+                  <div class="group-info-place-votes">
+                    <div class="place-voter-avatars"></div>
+                    <button type="button" class="place-vote-btn" aria-label="Vote for Hawa Mahal"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile-card collapsed">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Activities</p>
+                <img src="./assets/icons/li_chevron-down-circle.svg" alt="" class="profile-chevron-icon" />
+              </div>
+              <div class="profile-card-body"></div>
+            </div>
+            <div class="profile-card collapsed">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Miscellaneous</p>
+                <img src="./assets/icons/li_chevron-down-circle.svg" alt="" class="profile-chevron-icon" />
+              </div>
+              <div class="profile-card-body"></div>
+            </div>
+
+            <h3 class="group-info-section-title">Safety</h3>
+            <div class="profile-card collapsed">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Group rules</p>
+                <img src="./assets/icons/li_chevron-down-circle.svg" alt="" class="profile-chevron-icon" />
+              </div>
+              <div class="profile-card-body"></div>
+            </div>
+            <button type="button" class="group-info-row-btn">
+              <span>Share trip with contact</span>
+              <img src="./assets/icons/li_share-2.svg" alt="" />
+            </button>
+            <button type="button" class="group-info-row-btn group-info-row-danger" data-open-modal="reportModal">
+              <span>Report Group</span>
+              <img src="./assets/icons/li_thumbs-down.svg" alt="" />
+            </button>
+            <button type="button" class="group-info-row-btn group-info-row-danger" data-open-modal="leaveModal">
+              <span>Leave group</span>
+              <img src="./assets/icons/li_log-out.svg" alt="" />
+            </button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="screen member-profile-screen" data-screen="19">
+          <button type="button" class="verify-back member-profile-back" data-goto="18" aria-label="Back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="#18181B"/></svg>
+          </button>
+          <div class="profile-scroll">
+            <div class="profile-avatar-wrap">
+              <img class="profile-avatar" src="./assets/tray/sameer.png" alt="" />
+            </div>
+            <div class="profile-name-row">
+              <p class="profile-name">Sameer Sharma</p>
+              <img class="profile-name-badge" src="./assets/icons/li_badge-check-2.svg" alt="" />
+            </div>
+            <div class="profile-meta-row">
+              <span>24 yrs</span>
+              <span class="profile-meta-location">
+                <img src="./assets/icons/li_map-pin.svg" alt="" />
+                Delhi, India
+              </span>
+            </div>
+            <div class="member-profile-contact-row">
+              <button type="button" aria-label="Call">
+                <img src="./assets/icons/li_phone.svg" alt="" class="contact-icon-phone" />
+              </button>
+              <button type="button" aria-label="Message">
+                <img src="./assets/icons/li_message-square.svg" alt="" />
+              </button>
+              <button type="button" aria-label="Video call">
+                <img src="./assets/icons/li_video.svg" alt="" />
+              </button>
+            </div>
+
+            <div class="profile-card">
+              <p class="profile-card-title">About</p>
+              <hr />
+              <p class="member-profile-about-text">Prefer relaxed trips, local food, and scenic places over packed sightseeing.</p>
+            </div>
+
+            <div class="profile-card">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Reviews</p>
+              </div>
+              <hr />
+              <div class="profile-row">
+                <span>Completed trips</span>
+                <b>13</b>
+              </div>
+              <div class="profile-row">
+                <span>Joined date</span>
+                <b>23/01/2024</b>
+              </div>
+              <div class="profile-row">
+                <span>Average rating</span>
+                <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5</span>
+              </div>
+              <div class="hscroll profile-reviews-row">
+                <div class="review-card">
+                  <p class="review-quote">"Had an amazing adventure in Jaisalmer with Sameer. A fun person to tag along with."</p>
+                  <div class="review-footer">
+                    <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5</span>
+                    <span class="review-author">
+                      <img src="./assets/profile/aarushi.png" alt="" />
+                      Aarushi
+                    </span>
+                  </div>
+                </div>
+                <div class="review-card">
+                  <p class="review-quote">"Sameer is fun to travel with. I visited Goa with him and had an amazing time."</p>
+                  <div class="review-footer">
+                    <span class="profile-rating"><img src="./assets/icons/li_star.svg" alt="" />5.0</span>
+                    <span class="review-author">
+                      <img src="./assets/profile/yukta.png" alt="" />
+                      Yukta
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="profile-view-all">View all</p>
+            </div>
+
+            <div class="profile-card">
+              <div class="profile-card-head">
+                <p class="profile-card-title">Travel Style</p>
+              </div>
+              <hr />
+              <div class="profile-chips-row">
+                <span class="profile-chip">🍜 Food</span>
+                <span class="profile-chip">🏔️ Adventure</span>
+                <span class="profile-chip">🎾 Sports</span>
+                <span class="profile-chip">🪇 Culture</span>
+                <span class="profile-chip">🌳 Nature</span>
+              </div>
+            </div>
+
+            <button type="button" class="group-info-row-btn group-info-row-danger" data-open-modal="reportModal" data-report-target="overlay">
+              <span>Report Sameer</span>
+              <img src="./assets/icons/li_thumbs-down.svg" alt="" />
+            </button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+
+        <div class="tray-overlay" data-tray-overlay></div>
+      <div class="tray" data-tray id="trayDharamshala">
+        <div class="tray-handle" data-tray-handle></div>
+        <div class="tray-hero" style="background-image:url('./assets/tray/dharamshala-hero.png')">
+          <div class="tray-hero-heading">
+            <p class="tray-title">Dharamshala, Himachal</p>
+            <span class="badge-check tray-badge"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+          </div>
+          <p class="tray-sub">11 August-15 August · 3/6 Joined</p>
+        </div>
+        <div class="tray-body">
+          <p class="tray-match">This trip is a 90% match based on your travel style and companion preferences</p>
+          <div class="tray-section-head">
+            <p class="tray-section-title">Travellers in the trip</p>
+            <p class="tray-rating">
+              <img src="./assets/icons/li_star.svg" alt="" />
+              Avg. rating: 4.9
+            </p>
+          </div>
+          <div class="tray-travellers">
+            <div class="traveller">
+              <div class="traveller-avatar-wrap">
+                <img class="traveller-avatar" src="./assets/tray/sameer.png" alt="" />
+                <span class="host-tag">Host</span>
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <p>Sameer, 25</p>
+            </div>
+            <div class="traveller">
+              <div class="traveller-avatar-wrap">
+                <img class="traveller-avatar" src="./assets/tray/agastya.png" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <p>Agastya, 26</p>
+            </div>
+            <div class="traveller">
+              <div class="traveller-avatar-wrap">
+                <img class="traveller-avatar" src="./assets/tray/jiya.png" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <p>Jiya, 26</p>
+            </div>
+          </div>
+          <hr />
+          <ul class="tray-details">
+            <li>Budget- INR <b>15,000-20,000</b></li>
+            <li>Accommodation- <b>Hotel</b>, Transport- <b>Bus</b></li>
+            <li>Travel Style- <b>Relaxed</b></li>
+            <li>Interests- 🍜 Food, 🌳 Nature, 🏔️ Adventure, 🛕 Spiritual Places</li>
+            <li>No Alcohol</li>
+            <li>Prefer meeting in public or online first</li>
+          </ul>
+          <hr />
+          <p class="tray-verify-copy">The host of this trip only allows verified travellers. Verify your account to join the trip</p>
+          <button class="primary-button tray-verify-btn" type="button">Get verified</button>
+        </div>
+      </div>
+
+      <div class="tray" data-tray id="trayGoa">
+        <div class="tray-handle" data-tray-handle></div>
+        <div class="tray-hero" style="background-image:url('./assets/destinations/Goa-full.png')">
+          <div class="tray-hero-heading">
+            <p class="tray-title">Goa</p>
+            <span class="badge-check tray-badge"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+          </div>
+          <p class="tray-sub">11 August-15 August · 3/6 Joined</p>
+        </div>
+        <div class="tray-body">
+          <p class="tray-match">This trip is a 90% match based on your travel style and companion preferences</p>
+          <div class="tray-section-head">
+            <p class="tray-section-title">Travellers in the trip</p>
+            <p class="tray-rating">
+              <img src="./assets/icons/li_star.svg" alt="" />
+              Avg. rating: 4.9
+            </p>
+          </div>
+          <div class="tray-travellers">
+            <div class="traveller">
+              <div class="traveller-avatar-wrap">
+                <img class="traveller-avatar" src="./assets/tray/sameer.png" alt="" />
+                <span class="host-tag">Host</span>
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <p>Sameer, 25</p>
+            </div>
+            <div class="traveller">
+              <div class="traveller-avatar-wrap">
+                <img class="traveller-avatar" src="./assets/tray/agastya.png" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <p>Agastya, 26</p>
+            </div>
+            <div class="traveller">
+              <div class="traveller-avatar-wrap">
+                <img class="traveller-avatar" src="./assets/tray/jiya.png" alt="" />
+                <span class="badge-check small"><img src="./assets/icons/li_badge-check.png" alt="" /></span>
+              </div>
+              <p>Jiya, 26</p>
+            </div>
+          </div>
+          <hr />
+          <ul class="tray-details">
+            <li>Budget- INR <b>15,000-20,000</b></li>
+            <li>Accommodation- <b>Hotel</b>, Transport- <b>Bus</b></li>
+            <li>Travel Style- <b>Relaxed</b></li>
+            <li>Interests- 🍜 Food, 🌳 Nature, 🏔️ Adventure, 🛕 Spiritual Places</li>
+            <li>No Alcohol</li>
+            <li>Prefer meeting in public or online first</li>
+          </ul>
+          <hr />
+          <p class="tray-verify-copy">The host of this trip only allows verified travellers. Verify your account to join the trip</p>
+          <button class="primary-button tray-verify-btn" type="button">Get verified</button>
+        </div>
+      </div>
+
+      <div class="tray filters-sheet" data-tray id="filtersPanel">
+        <div class="tray-handle" data-tray-handle></div>
+        <div class="filters-body">
+          <p class="filters-title">Filters</p>
+
+          <div class="filters-card">
+            <button type="button" class="filters-row filters-row-button" id="calendarToggle">
+              <span class="filters-row-label">
+                <img src="./assets/icons/li_calendar.svg" alt="" />
+                Add dates
+              </span>
+              <img class="filters-chevron" id="calendarChevron" src="./assets/icons/li_chevron-right-filter.svg" alt="" />
+            </button>
+            <div class="filters-calendar" id="filtersCalendar" hidden>
+              <div class="calendar-header">
+                <button type="button" class="calendar-nav" id="calendarPrev" aria-label="Previous month">‹</button>
+                <p class="calendar-month-label" id="calendarMonthLabel"></p>
+                <button type="button" class="calendar-nav" id="calendarNext" aria-label="Next month">›</button>
+              </div>
+              <div class="calendar-weekdays">
+                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+              </div>
+              <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+          </div>
+
+          <div class="filters-card">
+            <div class="filters-row">
+              <span class="filters-row-label">
+                <img src="./assets/icons/li_banknote.svg" alt="" />
+                Budget
+              </span>
+              <span class="filters-value" id="budgetValueLabel">INR 15,000-20,000</span>
+            </div>
+            <div class="range" data-range-min="5000" data-range-max="50000" data-min-value="15000" data-max-value="20000" data-range-prefix="INR " data-range-label-target="budgetValueLabel">
+              <div class="range-fill"></div>
+              <i data-handle="min"></i>
+              <i data-handle="max"></i>
+              <input class="range-input range-input-min" type="range" min="5000" max="50000" step="500" value="15000" aria-label="Minimum budget" />
+              <input class="range-input range-input-max" type="range" min="5000" max="50000" step="500" value="20000" aria-label="Maximum budget" />
+            </div>
+          </div>
+
+          <div class="filters-card">
+            <div class="filters-row">
+              <span class="filters-row-label">
+                <img src="./assets/icons/li_users.svg" alt="" />
+                Group Size
+              </span>
+              <span class="filters-value" id="groupSizeValueLabel">3-7</span>
+            </div>
+            <div class="range" data-range-min="3" data-range-max="10" data-min-value="3" data-max-value="7" data-range-label-target="groupSizeValueLabel">
+              <div class="range-fill"></div>
+              <i data-handle="min"></i>
+              <i data-handle="max"></i>
+              <input class="range-input range-input-min" type="range" min="3" max="10" value="3" aria-label="Minimum group size" />
+              <input class="range-input range-input-max" type="range" min="3" max="10" value="7" aria-label="Maximum group size" />
+            </div>
+          </div>
+
+          <div class="filters-card filters-toggles">
+            <label class="filters-toggle-row">
+              <span class="filters-row-label">
+                <img src="./assets/icons/li_badge-check-2.svg" alt="" />
+                Verified groups only
+              </span>
+              <input type="checkbox" checked />
+            </label>
+            <label class="filters-toggle-row">
+              <span class="filters-row-label">
+                <img src="./assets/icons/li_badge-check-1.svg" alt="" />
+                Female groups only
+              </span>
+              <input type="checkbox" />
+            </label>
+            <label class="filters-toggle-row">
+              <span class="filters-row-label">
+                <img src="./assets/icons/li_badge-check.svg" alt="" />
+                Same starting city
+              </span>
+              <input type="checkbox" />
+            </label>
+          </div>
+
+          <div class="filters-card">
+            <p class="filters-row-static">
+              <img src="./assets/icons/li_backpack.svg" alt="" />
+              Travel Style
+            </p>
+            <div class="filters-chips-grid">
+              <button type="button" class="chip-outline">🍜 Food</button>
+              <button type="button" class="chip-outline">🌃 Nightlife</button>
+              <button type="button" class="chip-outline selected">🌳 Nature</button>
+              <button type="button" class="chip-outline selected">🏔️ Adventure</button>
+              <button type="button" class="chip-outline">🛍️ Shopping</button>
+              <button type="button" class="chip-outline selected">🎾 Sports</button>
+              <button type="button" class="chip-outline">🚗 Road Trip</button>
+              <button type="button" class="chip-outline">🪇 Culture</button>
+              <button type="button" class="chip-outline">🧘 Wellness</button>
+              <button type="button" class="chip-outline">🛕 Spiritual Places</button>
+            </div>
+          </div>
+
+          <button class="primary-button filters-save-btn" type="button" data-tray-handle>Save</button>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card" id="leaveModal">
+          <p class="modal-title">State the reason for leaving group</p>
+          <div class="checks modal-checks">
+            <label><input type="checkbox" />Plans no longer match my schedule</label>
+            <label><input type="checkbox" />I found another group</label>
+            <label><input type="checkbox" />Too many changes in the plan</label>
+            <label><input type="checkbox" />Group is inactive</label>
+            <label><input type="checkbox" />I'm no longer travelling</label>
+          </div>
+          <textarea class="modal-other-reason" placeholder="Other reason"></textarea>
+          <button type="button" class="modal-submit-btn" data-close-modal>Submit</button>
+        </div>
+
+        <div class="modal-card" id="reportModal" hidden>
+          <p class="modal-title" id="reportModalTitle">State the reason for reporting group</p>
+          <div class="checks modal-checks">
+            <label><input type="checkbox" />Suspicious or fake group</label>
+            <label><input type="checkbox" />Unsafe behaviour</label>
+            <label><input type="checkbox" />Scam or fraud attempt</label>
+            <label><input type="checkbox" />Payment or booking pressure</label>
+            <label><input type="checkbox" />Misleading trip details</label>
+          </div>
+          <textarea class="modal-other-reason" placeholder="Other reason"></textarea>
+          <button type="button" class="modal-submit-btn" data-close-modal>Submit</button>
+        </div>
+      </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
