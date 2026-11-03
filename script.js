@@ -23,6 +23,20 @@ function startOtpCountdown() {
   }, 1000);
 }
 
+// Onboarding progress: 4 segments. Login + OTP = 1, Profile = 2, Style = 3, Companions = 4.
+const progressBar = document.querySelector("#progressBar");
+const progressFill = document.querySelector("#progressFill");
+const progressSteps = { 1: 1, 2: 1, 3: 2, 4: 3, 5: 4 };
+
+function updateProgress() {
+  if (!progressBar || !progressFill) return;
+  const step = progressSteps[current];
+  progressBar.hidden = !step;
+  if (!step) return;
+  progressFill.style.width = `${(step / 4) * 100}%`;
+  progressBar.setAttribute("aria-valuenow", step);
+}
+
 function showScreen(index, enterAnimation) {
   const previous = current;
   current = Math.max(0, Math.min(index, screens.length - 1));
@@ -36,13 +50,46 @@ function showScreen(index, enterAnimation) {
     screens[current].classList.add("enter-from-right");
   }
   if (stepLabel) stepLabel.textContent = `${current + 1} / ${screens.length}`;
+  updateProgress();
+  document.querySelector("#statusBar")?.classList.toggle("light", screens[current].dataset.status === "light");
+  closeDatePicker();
+  if (screens[current].querySelector(".q-step")) setSubStep(screens[current], 0);
   if (current === 2) startOtpCountdown();
 }
 
 document.querySelector("[data-prev]")?.addEventListener("click", () => showScreen(current - 1));
 document.querySelector("[data-next-global]")?.addEventListener("click", () => showScreen(current + 1));
+// Screens with .q-step blocks show one question at a time; Continue moves through them before leaving the screen.
+function stepsOf(screen) {
+  return [...screen.querySelectorAll(".q-step")];
+}
+
+function setSubStep(screen, index) {
+  const steps = stepsOf(screen);
+  steps.forEach((step, i) => step.classList.toggle("active", i === index));
+  screen.dataset.substep = index;
+  const cta = screen.querySelector(".bottom-action");
+  if (cta) {
+    if (!cta.dataset.finalLabel) cta.dataset.finalLabel = cta.textContent.trim();
+    cta.textContent = index === steps.length - 1 ? cta.dataset.finalLabel : "Continue";
+  }
+}
+
+document.querySelectorAll(".screen").forEach((screen) => {
+  if (screen.querySelector(".q-step")) setSubStep(screen, 0);
+});
+
 document.querySelectorAll("[data-next]").forEach((button) => {
-  button.addEventListener("click", () => showScreen(current + 1));
+  button.addEventListener("click", () => {
+    const screen = button.closest(".screen");
+    const steps = screen ? stepsOf(screen) : [];
+    const index = screen ? Number(screen.dataset.substep || 0) : 0;
+    if (steps.length && index < steps.length - 1) {
+      setSubStep(screen, index + 1);
+      return;
+    }
+    showScreen(current + 1);
+  });
 });
 
 document.querySelectorAll(".chips button").forEach((button) => {
@@ -944,4 +991,149 @@ chatSendBtn?.addEventListener("click", () => {
   if (chatMessageInput && chatMessageInput.value.trim().length > 0) {
     sendChatMessage();
   }
+});
+
+
+// ---- Birthdate date picker (bottom sheet) ----
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
+const DP_MIN_YEAR = 1951; // matches validateBirthdate (year must be > 1950)
+
+function dpMaxDate() {
+  const t = new Date();
+  return new Date(t.getFullYear() - 18, t.getMonth(), t.getDate()); // must be at least 18
+}
+
+function closeDatePicker() {
+  const picker = document.querySelector("#datePicker");
+  if (!picker) return;
+  picker.classList.remove("open");
+  picker.setAttribute("aria-hidden", "true");
+}
+
+(function initDatePicker() {
+  const picker = document.querySelector("#datePicker");
+  if (!picker || !birthdateInput) return;
+  const grid = picker.querySelector("#dpGrid");
+  const monthSel = picker.querySelector("#dpMonth");
+  const yearSel = picker.querySelector("#dpYear");
+  const prevBtn = picker.querySelector("#dpPrev");
+  const nextBtn = picker.querySelector("#dpNext");
+  const maxDate = dpMaxDate();
+  let viewYear = maxDate.getFullYear();
+  let viewMonth = maxDate.getMonth();
+  let selected = null; // { y, m, d }
+
+  for (let y = maxDate.getFullYear(); y >= DP_MIN_YEAR; y--) yearSel.add(new Option(y, y));
+  MONTHS.forEach((name, i) => monthSel.add(new Option(name, i)));
+
+  function clampView() {
+    if (viewYear > maxDate.getFullYear() || (viewYear === maxDate.getFullYear() && viewMonth > maxDate.getMonth())) {
+      viewYear = maxDate.getFullYear();
+      viewMonth = maxDate.getMonth();
+    }
+    if (viewYear < DP_MIN_YEAR) { viewYear = DP_MIN_YEAR; viewMonth = 0; }
+  }
+
+  function render() {
+    clampView();
+    monthSel.value = viewMonth;
+    yearSel.value = viewYear;
+    prevBtn.disabled = viewYear === DP_MIN_YEAR && viewMonth === 0;
+    nextBtn.disabled = viewYear === maxDate.getFullYear() && viewMonth === maxDate.getMonth();
+    grid.innerHTML = "";
+    WEEKDAYS.forEach((w) => {
+      const el = document.createElement("div");
+      el.className = "dp-weekday";
+      el.textContent = w;
+      grid.appendChild(el);
+    });
+    const firstDow = new Date(viewYear, viewMonth, 1).getDay();
+    const days = new Date(viewYear, viewMonth + 1, 0).getDate();
+    for (let i = 0; i < firstDow; i++) {
+      const pad = document.createElement("button");
+      pad.className = "dp-day empty";
+      pad.tabIndex = -1;
+      pad.disabled = true;
+      grid.appendChild(pad);
+    }
+    for (let d = 1; d <= days; d++) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "dp-day";
+      btn.textContent = d;
+      const date = new Date(viewYear, viewMonth, d);
+      if (date > maxDate) btn.disabled = true;
+      if (selected && selected.y === viewYear && selected.m === viewMonth && selected.d === d) btn.classList.add("selected");
+      btn.addEventListener("click", () => {
+        selected = { y: viewYear, m: viewMonth, d };
+        const dd = String(d).padStart(2, "0");
+        const mm = String(viewMonth + 1).padStart(2, "0");
+        birthdateInput.value = `${dd}/${mm}/${viewYear}`;
+        birthdateInput.classList.remove("invalid");
+        birthdateError.hidden = true;
+        birthdateError.classList.remove("error");
+        render();
+        setTimeout(closeDatePicker, 140);
+      });
+      grid.appendChild(btn);
+    }
+  }
+
+  function open() {
+    // sync the view with whatever is already in the field
+    const m = birthdateInput.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (m && validateBirthdate(birthdateInput.value)) {
+      selected = { y: Number(m[3]), m: Number(m[2]) - 1, d: Number(m[1]) };
+      viewYear = selected.y;
+      viewMonth = selected.m;
+    } else if (!birthdateInput.value) {
+      selected = null;
+    }
+    render();
+    picker.classList.add("open");
+    picker.setAttribute("aria-hidden", "false");
+  }
+
+  birthdateInput.addEventListener("click", open);
+  birthdateInput.addEventListener("input", closeDatePicker);
+  picker.querySelector("#dpScrim").addEventListener("click", closeDatePicker);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDatePicker(); });
+  monthSel.addEventListener("change", () => { viewMonth = Number(monthSel.value); render(); });
+  yearSel.addEventListener("change", () => { viewYear = Number(yearSel.value); render(); });
+  prevBtn.addEventListener("click", () => { viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; } render(); });
+  nextBtn.addEventListener("click", () => { viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; } render(); });
+})();
+
+
+// ---- Enter key: move to the next field, or press Continue from the last one (onboarding screens 1-5) ----
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" || event.isComposing || event.defaultPrevented) return;
+  const el = event.target;
+  if (!(el instanceof HTMLInputElement)) return;
+  if (["checkbox", "radio", "range", "button", "submit", "hidden"].includes(el.type)) return;
+  if (el.classList.contains("lang-input")) return; // has its own Enter handling
+  const screen = el.closest(".screen");
+  const n = screen ? Number(screen.dataset.screen) : NaN;
+  if (!(n >= 1 && n <= 5)) return;
+
+  event.preventDefault();
+  if (el.id === "birthdateInput") closeDatePicker();
+
+  const fields = [...screen.querySelectorAll("input")].filter(
+    (f) =>
+      !["checkbox", "radio", "range", "button", "submit", "hidden"].includes(f.type) &&
+      !f.classList.contains("lang-input") &&
+      !f.disabled &&
+      !f.readOnly &&
+      f.offsetParent !== null
+  );
+  const next = fields[fields.indexOf(el) + 1];
+  if (next) {
+    next.focus();
+    return;
+  }
+  el.blur();
+  const cta = screen.querySelector(".primary-button");
+  if (cta && !cta.disabled) cta.click();
 });
