@@ -30,7 +30,7 @@
         </div>
 
         <div class="screen" data-screen="1">
-          <header class="top-bar">Log in or sign up</header>
+          <header class="top-bar">Welcome</header>
           <div class="content login-content">
             <h2>Let’s get started</h2>
             <form class="stack">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="screen otp-screen" data-screen="2">
-          <header class="top-bar">Log in or sign up</header>
+          <header class="top-bar">Verification</header>
           <div class="content otp-content">
             <h2>OTP has been sent to your email</h2>
             <div class="otp-grid">
@@ -63,7 +63,7 @@
         </div>
 
         <div class="screen" data-screen="3">
-          <header class="top-bar">Log in or sign up</header>
+          <header class="top-bar">About you</header>
           <div class="content profile-content">
             <h2>Let’s set up your travel profile</h2>
             <div class="joined-fields">
@@ -102,7 +102,7 @@
         </div>
 
         <div class="screen" data-screen="4">
-          <header class="top-bar">Log in or sign up</header>
+          <header class="top-bar">Your vibe</header>
           <div class="content style-content">
             <h2>Let’s set up your travel style</h2>
             <p class="subhead">These can be edited later in settings</p>
@@ -144,7 +144,7 @@
         </div>
 
         <div class="screen" data-screen="5">
-          <header class="top-bar">Log in or sign up</header>
+          <header class="top-bar">Your crew</header>
           <div class="content companion-content">
             <h2>Tell us who you’d travel with</h2>
             <p class="subhead">These can be edited later in settings</p>
@@ -197,7 +197,7 @@
               <label><input type="checkbox" />I prefer public transport or verified cabs only</label>
             </div>
             </div>
-            <button class="primary-button bottom-action" type="button" data-next>Explore travellers</button>
+            <button class="primary-button bottom-action" type="button" data-next data-next-screen="20">Continue</button>
           </div>
           <div class="home-indicator"></div>
         </div>
@@ -1369,6 +1369,21 @@
           </div>
           <div class="home-indicator"></div>
         </div>
+
+        <div class="screen commit-screen" data-screen="20">
+          <header class="top-bar">Our promise</header>
+          <img class="commit-logo" src="./assets/tripmates-logo.svg" alt="TripMates" onerror="this.style.visibility='hidden'" />
+          <h2 class="commit-title">TripMates is a community where anyone can belong</h2>
+          <div class="commit-body">
+            <p>To ensure this, we’re asking you to commit to the following:</p>
+            <p>I agree to treat everyone in the TripMates community—regardless of their race, religion, national origin, ethnicity, skin colour, disability, sex, gender identity, sexual orientation or age—with respect, and without judgement or bias.</p>
+          </div>
+          <button class="commit-learn" type="button">Learn More</button>
+          <button class="primary-button commit-accept" type="button" data-goto="6">Accept</button>
+          <button class="outline-button commit-decline" type="button" data-goto="1">Decline</button>
+          <div class="home-indicator"></div>
+        </div>
+
 
         <div class="tray-overlay" data-tray-overlay></div>
       <div class="tray" data-tray id="trayDharamshala">
