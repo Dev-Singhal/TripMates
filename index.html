@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="color-scheme" content="light only" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TripMates Onboarding</title>
@@ -9,6 +10,20 @@
   <body>
     <main class="stage">
       <section class="phone" aria-label="TripMates onboarding prototype">
+        <div class="status-bar" id="statusBar" aria-hidden="true">
+          <span class="status-time">9:41</span>
+          <span class="status-island"></span>
+          <span class="status-icons">
+            <svg width="19" height="12" viewBox="0 0 19 12" fill="currentColor"><rect x="0" y="7.5" width="3.2" height="4.5" rx="1"/><rect x="5" y="5" width="3.2" height="7" rx="1"/><rect x="10" y="2.5" width="3.2" height="9.5" rx="1"/><rect x="15" y="0" width="3.2" height="12" rx="1"/></svg>
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 2.3c2.3 0 4.4.9 6 2.4.1.1.3.1.4 0l1.1-1.1c.1-.1.1-.3 0-.4C13.9 1.2 11.3 0 8.5 0S3.1 1.2 1 3.2c-.1.1-.1.3 0 .4l1.1 1.1c.1.1.3.1.4 0 1.6-1.5 3.7-2.4 6-2.4z"/><path d="M8.5 6.1c1.3 0 2.5.5 3.4 1.3.1.1.3.1.4 0l1.1-1.1c.1-.1.1-.3 0-.4-1.2-1.1-2.9-1.8-4.9-1.8s-3.7.7-4.9 1.8c-.1.1-.1.3 0 .4l1.1 1.1c.1.1.3.1.4 0 .9-.8 2.1-1.3 3.4-1.3z"/><path d="M10.8 9.2c.1-.1.1-.3 0-.4C10.2 8.3 9.4 8 8.5 8s-1.7.3-2.3.8c-.1.1-.1.3 0 .4l1.9 1.9c.2.2.5.2.7 0l1.9-1.9z"/></svg>
+            <svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x="0.5" y="0.5" width="23" height="12" rx="3.8" stroke="currentColor" opacity="0.4"/><rect x="2" y="2" width="20" height="9" rx="2.5" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2z" fill="currentColor" opacity="0.5"/></svg>
+          </span>
+        </div>
+        <div class="progress" id="progressBar" role="progressbar" aria-label="Onboarding progress" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" hidden>
+          <span class="progress-fill" id="progressFill"></span>
+          <i></i><i></i><i></i>
+        </div>
+
         <div class="screen splash active" data-screen="0">
           <video class="splash-video" id="splashVideo" src="./assets/TripMates.mp4" poster="./assets/splash-poster.jpg" autoplay muted playsinline></video>
           <div class="home-indicator"></div>
@@ -20,7 +35,6 @@
             <h2>Let’s get started</h2>
             <form class="stack">
               <input class="field" type="email" placeholder="Email" />
-              <input class="field" type="password" placeholder="Password" />
               <button class="primary-button" type="button" data-next>Continue</button>
             </form>
             <div class="divider"><span></span><em>or</em><span></span></div>
@@ -38,10 +52,10 @@
           <div class="content otp-content">
             <h2>OTP has been sent to your email</h2>
             <div class="otp-grid">
-              <input maxlength="1" inputmode="numeric" />
-              <input maxlength="1" inputmode="numeric" />
-              <input maxlength="1" inputmode="numeric" />
-              <input maxlength="1" inputmode="numeric" />
+              <input type="text" maxlength="1" inputmode="numeric" autocomplete="one-time-code" />
+              <input type="text" maxlength="1" inputmode="numeric" autocomplete="one-time-code" />
+              <input type="text" maxlength="1" inputmode="numeric" autocomplete="one-time-code" />
+              <input type="text" maxlength="1" inputmode="numeric" autocomplete="one-time-code" />
             </div>
             <p class="otp-help">Didn’t receive an OTP?<br />Resend it in <strong id="otpTimer">38 seconds</strong></p>
           </div>
@@ -70,6 +84,20 @@
             <p class="legal">By selecting <b>Continue</b>, I agree to TripMates’ <a>Terms of Service</a>, <a>Nondiscrimination Policy</a> and acknowledge the <a>Privacy Policy</a>.</p>
             <button class="primary-button" type="button" data-next>Continue</button>
           </div>
+
+          <div class="date-picker" id="datePicker" aria-hidden="true">
+            <div class="dp-scrim" id="dpScrim"></div>
+            <div class="dp-sheet" role="dialog" aria-label="Select your birthdate">
+              <div class="dp-grabber"></div>
+              <div class="dp-header">
+                <button class="dp-nav" id="dpPrev" type="button" aria-label="Previous month">&#8249;</button>
+                <select id="dpMonth" aria-label="Month"></select>
+                <select class="dp-year" id="dpYear" aria-label="Year"></select>
+                <button class="dp-nav" id="dpNext" type="button" aria-label="Next month">&#8250;</button>
+              </div>
+              <div class="dp-grid" id="dpGrid"></div>
+            </div>
+          </div>
           <div class="home-indicator"></div>
         </div>
 
@@ -79,20 +107,22 @@
             <h2>Let’s set up your travel style</h2>
             <p class="subhead">These can be edited later in settings</p>
 
+            <div class="q-step">
             <label class="question">What budget size do you prefer in your trips?</label>
             <div class="field-select option-select three" data-single-select>
               <button class="field-option" type="button">Shoestring</button>
               <button class="field-option" type="button">Moderate</button>
               <button class="field-option" type="button">Premium</button>
             </div>
-
             <label class="question">What pace do you travel at?</label>
             <div class="field-select option-select three" data-single-select>
               <button class="field-option" type="button">Relaxed</button>
               <button class="field-option" type="button">Balanced</button>
               <button class="field-option" type="button">Packed</button>
             </div>
+            </div>
 
+            <div class="q-step">
             <label class="question">Preferred accommodation style</label>
             <div class="field-select option-select four" data-single-select>
               <button class="field-option" type="button">Hotel</button>
@@ -100,13 +130,13 @@
               <button class="field-option" type="button">Homestay</button>
               <button class="field-option" type="button">Others</button>
             </div>
-
             <label class="question">What activities do you like? (select at least 3)</label>
             <div class="chips">
               <button>🍜 Food</button><button>🌃 Nightlife</button><button>🌳 Nature</button>
               <button>🏔️ Adventure</button><button>🛍️ Shopping</button><button>🧘 Wellness</button>
               <button>🪇 Culture</button><button>🚗 Road Trip</button><button>🎾 Sports</button>
               <button class="wide">🛕 Spiritual Places</button>
+            </div>
             </div>
             <button class="primary-button bottom-action" type="button" data-next>Continue</button>
           </div>
@@ -119,6 +149,7 @@
             <h2>Tell us who you’d travel with</h2>
             <p class="subhead">These can be edited later in settings</p>
 
+            <div class="q-step">
             <div class="range-row">
               <p><span>Age range</span><b data-range-label>18-40</b></p>
               <div class="range" data-range-min="18" data-range-max="80" data-min-value="18" data-max-value="40">
@@ -139,21 +170,24 @@
                 <input class="range-input range-input-max" type="range" min="3" max="10" value="7" aria-label="Maximum group size" />
               </div>
             </div>
+            </div>
 
+            <div class="q-step">
             <label class="question">Gender preference, if any</label>
             <div class="field-select gender-select" data-single-select>
               <button class="field-option" type="button">Male</button>
               <button class="field-option" type="button">Female</button>
               <button class="field-option" type="button">Open to all</button>
             </div>
-
             <label class="question">Language preference</label>
             <div class="lang-field" id="langField">
               <div class="lang-chips" id="langChips"></div>
               <input class="lang-input" id="langInput" type="text" placeholder="Select language" autocomplete="off" />
               <ul class="lang-suggestions" id="langSuggestions" hidden></ul>
             </div>
+            </div>
 
+            <div class="q-step">
             <label class="question boundaries">Set your travel boundaries</label>
             <div class="checks">
               <label><input type="checkbox" />I prefer meeting first in public or online</label>
@@ -161,6 +195,7 @@
               <label><input type="checkbox" />I’m comfortable sharing accommodation</label>
               <label><input type="checkbox" />I want to avoid late-night travel</label>
               <label><input type="checkbox" />I prefer public transport or verified cabs only</label>
+            </div>
             </div>
             <button class="primary-button bottom-action" type="button" data-next>Explore travellers</button>
           </div>
@@ -310,7 +345,7 @@
           <div class="home-indicator"></div>
         </div>
 
-        <div class="screen destination-screen" data-screen="7">
+        <div class="screen destination-screen" data-screen="7" data-status="light">
           <div class="destination-hero" style="background-image:url('./assets/destinations/Goa-full.png')">
             <button class="hero-back" type="button" data-goto="6" aria-label="Back to Explore">
               <img src="./assets/icons/li_chevron-right.svg" alt="" />
@@ -1088,7 +1123,7 @@
           <div class="home-indicator"></div>
         </div>
 
-        <div class="screen group-info-screen" data-screen="18">
+        <div class="screen group-info-screen" data-screen="18" data-status="light">
           <div class="group-info-scroll">
             <div class="group-info-hero" style="background-image:url('./assets/destinations/jaipur.png')">
               <button type="button" class="hero-back" data-goto="17" aria-label="Back to chat">
