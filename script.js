@@ -26,7 +26,7 @@ function startOtpCountdown() {
 // Onboarding progress: 4 segments. Login + OTP = 1, Profile = 2, Style = 3, Companions = 4.
 const progressBar = document.querySelector("#progressBar");
 const progressFill = document.querySelector("#progressFill");
-const progressSteps = { 1: 1, 2: 1, 3: 2, 4: 3, 5: 4 };
+const progressSteps = { 1: 1, 2: 1, 3: 2, 4: 3, 5: 4, 20: 4 }; // 20 = community commitment
 
 function updateProgress() {
   if (!progressBar || !progressFill) return;
@@ -88,7 +88,8 @@ document.querySelectorAll("[data-next]").forEach((button) => {
       setSubStep(screen, index + 1);
       return;
     }
-    showScreen(current + 1);
+    const target = button.dataset.nextScreen;
+    showScreen(target !== undefined ? Number(target) : current + 1);
   });
 });
 
